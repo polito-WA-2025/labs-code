@@ -1,0 +1,15 @@
+{
+  "name": "lab01-node",
+  "version": "1.0.0",
+  "description": "Proposed solution of Lab #1: Getting started with Node.js ",
+  "main": "lab01-ex1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.13"
+  }
+}
