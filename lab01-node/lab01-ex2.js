@@ -62,7 +62,7 @@ function FilmLibrary() {
   this.getRated = () => {
     const newList = this.list.filter(function(film, index, arr) {
       return film.rating > 0;
-    }).toSorted((d1, d2) => {d1.rating - d2.rating});
+    }).toSorted((d1, d2) => {return d2.rating - d1.rating});
     return newList;
   }
 
