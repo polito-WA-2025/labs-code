@@ -1,4 +1,4 @@
-# Lab 03 - APIs with Express
+# Lab 04 - APIs with Express
 
 ## List of APIs offered by the server
 
