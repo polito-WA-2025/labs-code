@@ -1,0 +1,148 @@
+# This file could be used for testing the API with Visual Studio Code
+
+## Retrieve all the films.
+GET http://localhost:3001/api/films HTTP/1.1
+###
+
+## Retrieve a specific film specifing its ID.
+GET http://localhost:3001/api/films/{{$randomInt 1 7}} HTTP/1.1
+###
+
+
+## Retrieve all the films with a specified filter (in this example "unseen").
+GET http://localhost:3001/api/films?filter=unseen HTTP/1.1
+###
+
+GET http://localhost:3001/api/films?filter=best HTTP/1.1
+###
+
+GET http://localhost:3001/api/films?filter=favorite HTTP/1.1
+###
+
+GET http://localhost:3001/api/searchFilms?titleSubstring=s HTTP/1.1
+
+###
+
+## Create new film (without id)
+POST http://localhost:3001/api/films HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Guardians of the Galaxy Vol.3",
+    "favorite": 1,
+    "watchDate": "2024-02-09",
+    "rating": 4
+}
+###
+
+GET http://localhost:3001/api/films?filter=lastmonth HTTP/1.1
+###
+
+## Delete film.
+DELETE http://localhost:3001/api/films/6 HTTP/1.1
+###
+
+
+## Update a film.
+PUT http://localhost:3001/api/films/7 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 7,
+    "title": "The Hangover",
+    "favorite": 0,
+    "rating": 1
+}
+###
+
+
+## Update film favorite property.
+PUT http://localhost:3001/api/films/3/favorite HTTP/1.1
+content-type: application/json
+
+{
+    "id" : 3,
+    "favorite": 1
+}
+###
+
+## Change film rating.
+POST http://localhost:3001/api/films/change-rating HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "deltaRating": 0
+}
+###
+
+
+
+# Wrong Requests
+
+## Trying to retrieve a film with an ID that does not exist.
+GET http://localhost:3001/api/films/1000 HTTP/1.1
+###
+
+## Trying to retrieve a film with a wrong ID.
+GET http://localhost:3001/api/films/ThisIsAStringId HTTP/1.1
+###
+
+## Trying to create a wrong film.
+POST http://localhost:3001/api/films HTTP/1.1
+content-type: application/json
+
+{
+    "wrong_title_field": "Guardians of the Galaxy Vol.3",
+    "favorite": "I really liked it!",
+    "watchDate": "May the 15th, 2023",
+    "rating": 35
+}
+###
+
+## Trying to update a film with wrong values.
+PUT http://localhost:3001/api/films/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "title": "The Hangover",
+    "favorite": 7,
+    "watchDate": "",
+    "rating": 7
+}
+###
+
+## Trying to updates film favorite property with a wrong value.
+PUT http://localhost:3001/api/films/1/favorite HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "favorite": "Really like it!"
+}
+###
+
+## Trying to update film rating property with a wrong value.
+PUT http://localhost:3001/api/films/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "rating": 50
+}
+###
+
+## Updates film with an id that does not exists
+PUT http://localhost:3001/api/films/999 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 999,
+    "title": "The Hangover",
+    "favorite": 0,
+    "watchDate": "",
+    "rating": 1,
+    "user": 1
+}
+###
